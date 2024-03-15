@@ -62,123 +62,111 @@ func _process(delta):
 			if player == null:
 				print("No player found! Can't move!");
 			else:
-				#i can't be bothered unindenting all this shit
-				if false:
-					pass
-				else:
-					var targetPosition = player.boardPosition + moveDir;
-					var targetObj = FindObjAt(targetPosition);
-					#print(targetPosition);
-					#if space is empty, move player
-					if targetObj == null:
-						if IsBoardPositionInBounds(targetPosition):
-							player.boardPosition = targetPosition;
-							player.targetPosition = targetPosition * gridSize;
-							PlaySound("Walk");
-							AddToUndoStack();
-						else:
-							player.Shake();
-							PlaySound("Bonk");
-					#if space is taken by a token,
-					elif targetObj.objType == BoardObject.OBJTYPE.Token:
-						var swap = GetSwapper();
-						#if our movement direction is NONE or the target token is a NONE token,
-						if (swap == null and type == TYPE.NONE and targetObj.type != TYPE.NONE) or (swap == null and type != TYPE.NONE and targetObj.type == TYPE.NONE) or (swap != null and targetObj.type != TYPE.SWAP):
-							#move player
-							player.boardPosition = targetPosition;
-							player.targetPosition = targetPosition * gridSize;
-							PlaySound("Walk");
-							
-							if swap == null:
-								#set side of player to token type
-								if dirInt == 0:
-									typeUp = targetObj.type;
-								elif dirInt == 1:
-									typeDown = targetObj.type;
-								elif dirInt == 2:
-									typeLeft = targetObj.type;
-								elif dirInt == 3:
-									typeRight = targetObj.type;
-							else:
-								#jesse we need to swap
-								if swap == 0:
-									typeUp = targetObj.type;
-								elif swap == 1:
-									typeDown = targetObj.type;
-								elif swap == 2:
-									typeLeft = targetObj.type;
-								elif swap == 3:
-									typeRight = targetObj.type;
-							
-							#update player object sides and sprite, then hide token
-							player.typeUp = typeUp;
-							player.typeDown = typeDown;
-							player.typeLeft = typeLeft;
-							player.typeRight = typeRight;
-							
-							player.SetSprite();
-							targetObj.SetVisible(false);
-							
-							#play sounds
-							if targetObj.type == BoardObject.TYPE.NONE:
-								PlaySound("Eat_R");
-							else:
-								PlaySound("Eat");
-								if targetObj.type == BoardObject.TYPE.ONE:
-									PlaySound("One");
-								elif targetObj.type == BoardObject.TYPE.TWO:
-									PlaySound("Two");
-								elif targetObj.type == BoardObject.TYPE.THREE:
-									PlaySound("Three");
-								elif targetObj.type == BoardObject.TYPE.SWAP:
-									PlaySound("Swap");
-								
-								if swap != null:
-									PlaySound("Swapped");
-							
-							#player slice anim
-							if (swap == null):
-								player.Bump(dirInt);
-							else:
-								player.Bump(swap);
-							
-							AddToUndoStack();
-							UpdateGoalStatus();
-						else:
-							var pushPosition = targetPosition + moveDir.normalized();
-							var pushObj = FindObjAt(pushPosition);
-							if pushObj == null or pushObj.visible == false:
-								if IsBoardPositionInBounds(pushPosition):
-									player.boardPosition = targetPosition;
-									player.targetPosition = targetPosition * gridSize;
-									PlaySound("Walk");
-									
-									targetObj.boardPosition = pushPosition;
-									targetObj.targetPosition = pushPosition * gridSize;
-									PlaySound("Push");
-									AddToUndoStack();
-								else:
-									player.Shake();
-									targetObj.Shake();
-									PlaySound("Bonk");
-							else:
-								player.Shake();
-								targetObj.Shake();
-								pushObj.Shake();
-								PlaySound("Bonk");
-					elif targetObj.objType == BoardObject.OBJTYPE.Goal:
+				var targetPosition = player.boardPosition + moveDir;
+				var targetObj = FindObjAt(targetPosition);
+				#print(targetPosition);
+				#if space is empty, move player
+				if targetObj == null:
+					if IsBoardPositionInBounds(targetPosition):
 						player.boardPosition = targetPosition;
 						player.targetPosition = targetPosition * gridSize;
 						PlaySound("Walk");
 						AddToUndoStack();
-						
-						if IsGoalActive():
-							Win();
-							PlaySound("Win");
 					else:
 						player.Shake();
-						targetObj.Shake();
 						PlaySound("Bonk");
+				#if space is taken by a token,
+				elif targetObj.objType == BoardObject.OBJTYPE.Token:
+					var swap = GetSwapper();
+					#if our movement direction is NONE or the target token is a NONE token,
+					if (swap == null and ((type == TYPE.NONE and targetObj.type != TYPE.NONE) or (type != TYPE.NONE and targetObj.type == TYPE.NONE))) or (swap != null and targetObj.type != TYPE.SWAP):
+						#move player
+						player.boardPosition = targetPosition;
+						player.targetPosition = targetPosition * gridSize;
+						PlaySound("Walk");
+						
+						if swap == null:
+							#set side of player to token type
+							match dirInt:
+								0: typeUp = targetObj.type;	
+								1: typeDown = targetObj.type;
+								2: typeLeft = targetObj.type;
+								3: typeRight = targetObj.type;
+									
+						else:
+							#jesse we need to swap
+							match swap:
+								0: typeUp = targetObj.type;
+								1: typeDown = targetObj.type;
+								2: typeLeft = targetObj.type;
+								3: typeRight = targetObj.type;
+						
+						#update player object sides and sprite, then hide token
+						player.typeUp = typeUp;
+						player.typeDown = typeDown;
+						player.typeLeft = typeLeft;
+						player.typeRight = typeRight;
+						
+						player.SetSprite();
+						targetObj.SetVisible(false);
+						
+						#play sounds
+						if targetObj.type == BoardObject.TYPE.NONE:
+							PlaySound("Eat_R");
+						else:
+							PlaySound("Eat");
+							match targetObj.type:
+								BoardObject.TYPE.ONE: PlaySound("One");
+								BoardObject.TYPE.TWO: PlaySound("Two");
+								BoardObject.TYPE.THREE: PlaySound("Three");
+								BoardObject.TYPE.SWAP: PlaySound("Swap");
+							
+							if swap != null:
+								PlaySound("Swapped");
+						
+						#player slice anim
+						if (swap == null):
+							player.Bump(dirInt);
+						else:
+							player.Bump(swap);
+						
+						AddToUndoStack();
+						UpdateGoalStatus();
+					else:
+						var pushPosition = targetPosition + moveDir.normalized();
+						var pushObj = FindObjAt(pushPosition);
+						if pushObj == null or pushObj.visible == false:
+							if IsBoardPositionInBounds(pushPosition):
+								player.boardPosition = targetPosition;
+								player.targetPosition = targetPosition * gridSize;
+								PlaySound("Walk");
+								
+								targetObj.boardPosition = pushPosition;
+								targetObj.targetPosition = pushPosition * gridSize;
+								PlaySound("Push");
+								AddToUndoStack();
+							else:
+								player.Shake();
+								targetObj.Shake();
+								PlaySound("Bonk");
+						else:
+							player.Shake();
+							targetObj.Shake();
+							pushObj.Shake();
+							PlaySound("Bonk");
+				elif targetObj.objType == BoardObject.OBJTYPE.Goal:
+					player.boardPosition = targetPosition;
+					player.targetPosition = targetPosition * gridSize;
+					PlaySound("Walk");
+					AddToUndoStack();
+					
+					if IsGoalActive():
+						Win();
+						PlaySound("Win");
+				else:
+					player.Shake();
+					targetObj.Shake();
+					PlaySound("Bonk");
 		
 		if Input.is_action_just_pressed("Undo"):
 			if undoStack.size() > 1:
@@ -316,51 +304,50 @@ func LoadLevel(name):
 	
 	for x in width:
 		for y in height:
-			if x < lines[y].length():
-				var letter = lines[y][x];
-				var obj = null;
-				
-				#i am too lazy to look up how to do switch statements in gdscript. sorry
-				if letter == '#':
+			if x >= lines[y].length(): break
+			var letter = lines[y][x];
+			var obj = null;
+			match letter:
+				'#':
 					obj = prefabWall.instance();
 					obj.objType = BoardObject.OBJTYPE.Wall;
-				elif letter == '-':
+				'-':
 					obj = prefabWall.instance();
 					obj.SetVisible(false);
 					obj.objType = BoardObject.OBJTYPE.Wall;
-				elif letter == '0':
+				'0':
 					obj = prefabToken.instance();
 					obj.type = obj.TYPE.NONE;
 					obj.objType = BoardObject.OBJTYPE.Token;
-				elif letter == '1':
+				'1':
 					obj = prefabToken.instance();
 					obj.objType = BoardObject.OBJTYPE.Token;
-				elif letter == '2':
+				'2':
 					obj = prefabToken.instance();
 					obj.type = obj.TYPE.TWO;
 					obj.objType = BoardObject.OBJTYPE.Token;
-				elif letter == '3':
+				'3':
 					obj = prefabToken.instance();
 					obj.type = obj.TYPE.THREE;
 					obj.objType = BoardObject.OBJTYPE.Token;
-				elif letter == 'S':
+				'S':
 					obj = prefabToken.instance();
 					obj.type = obj.TYPE.SWAP;
 					obj.objType = BoardObject.OBJTYPE.Token;
-				elif letter == '@':
+				'@':
 					obj = prefabPlayer.instance();
 					obj.objType = BoardObject.OBJTYPE.Player;
-				elif letter == '$':
+				'$':
 					obj = prefabGoal.instance();
 					obj.objType = BoardObject.OBJTYPE.Goal;
-				
-				if obj != null:
-					add_child(obj);
-					obj.transform.origin = Vector2(x * gridSize, (y + 20) * gridSize);
-					obj.boardPosition = Vector2(x,y);
-					obj.targetPosition = Vector2(x * gridSize, y * gridSize);
-					obj.id = currentID;
-					currentID += 1;
+			
+			if obj != null:
+				add_child(obj);
+				obj.transform.origin = Vector2(x * gridSize, (y + 20) * gridSize);
+				obj.boardPosition = Vector2(x,y);
+				obj.targetPosition = Vector2(x * gridSize, y * gridSize);
+				obj.id = currentID;
+				currentID += 1;
 	
 	#center level on screen
 	#there is probably a less insane way to do this
@@ -383,7 +370,7 @@ func LoadLevel(name):
 	
 	scale = Vector2(realScale, realScale);
 	
-	var center = Vector2((boundRight + boundLeft)/2, (boundTop + boundBottom)/2);
+	var center = Vector2((boundRight + boundLeft)/2.0, (boundTop + boundBottom)/2.0);
 	var levelOrigin = center;
 	levelOrigin.x -= ((float(width) - 1.0)/2.0) * gridSize * realScale;
 	levelOrigin.y -= ((float(height) - 1.0)/2.0) * gridSize * realScale;

@@ -90,7 +90,7 @@ func LoadCurrentLevel():
 	LoadLevel(levelList[currentLevel].filename);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("Restart"):
 		Restart();
 	if Input.is_action_just_pressed("SkipLevel"):

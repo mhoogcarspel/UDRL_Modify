@@ -19,7 +19,7 @@ func SetState(state):
 		currentState = state;
 		Bump();
 
-func _process(delta):
+func _process(_delta):
 	var scaleDiff = $Token.scale.x - scaleNormal;
 	var newScale = $Token.scale.x - scaleDiff * scaleRate;
 	$Token.scale = Vector2(newScale, newScale);
