@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/two4.mp3-4de41e86fad71feb433d0e3f281b1cdb.mp3str"
+
+[deps]
+
+source_file="res://audio/music/two4.mp3"
+dest_files=[ "res://.import/two4.mp3-4de41e86fad71feb433d0e3f281b1cdb.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

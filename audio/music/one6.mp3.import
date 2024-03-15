@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/one6.mp3-64556de80601d3e014e391a5a9d7726d.mp3str"
+
+[deps]
+
+source_file="res://audio/music/one6.mp3"
+dest_files=[ "res://.import/one6.mp3-64556de80601d3e014e391a5a9d7726d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

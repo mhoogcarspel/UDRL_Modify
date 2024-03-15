@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/swap5.mp3-b10be4275d80d6af7eaf084022afb80f.mp3str"
+
+[deps]
+
+source_file="res://audio/music/swap5.mp3"
+dest_files=[ "res://.import/swap5.mp3-b10be4275d80d6af7eaf084022afb80f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

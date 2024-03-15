@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/swapped6.mp3-a042c78fa4e92e2f8e7eeef6a7377d8b.mp3str"
+
+[deps]
+
+source_file="res://audio/music/swapped6.mp3"
+dest_files=[ "res://.import/swapped6.mp3-a042c78fa4e92e2f8e7eeef6a7377d8b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

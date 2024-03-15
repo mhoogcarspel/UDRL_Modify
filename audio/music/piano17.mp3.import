@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano17.mp3-9d88e46ac57dad88e16d58521b4a46ea.mp3str"
+
+[deps]
+
+source_file="res://audio/music/piano17.mp3"
+dest_files=[ "res://.import/piano17.mp3-9d88e46ac57dad88e16d58521b4a46ea.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

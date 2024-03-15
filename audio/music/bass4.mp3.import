@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bass4.mp3-835f5d57aa636b6784de8608edc602bf.mp3str"
+
+[deps]
+
+source_file="res://audio/music/bass4.mp3"
+dest_files=[ "res://.import/bass4.mp3-835f5d57aa636b6784de8608edc602bf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

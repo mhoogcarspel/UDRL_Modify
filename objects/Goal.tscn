@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/goal.png" type="Texture" id=1]
+[ext_resource path="res://objects/Goal.gd" type="Script" id=2]
+
+[node name="Goal" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Outline" type="Sprite" parent="."]
+z_index = 100
+z_as_relative = false
+texture = ExtResource( 1 )
+hframes = 2
+
+[node name="Checkers" type="Sprite" parent="."]
+visible = false
+z_index = 101
+z_as_relative = false
+texture = ExtResource( 1 )
+hframes = 2
+frame = 1

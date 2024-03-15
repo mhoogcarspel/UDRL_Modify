@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/three6.mp3-ceceaf0885b1564942846834c7386742.mp3str"
+
+[deps]
+
+source_file="res://audio/music/three6.mp3"
+dest_files=[ "res://.import/three6.mp3-ceceaf0885b1564942846834c7386742.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

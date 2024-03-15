@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/piano10.mp3-c5c40fa68f65808b220377a9593f5e7c.mp3str"
+
+[deps]
+
+source_file="res://audio/music/piano10.mp3"
+dest_files=[ "res://.import/piano10.mp3-c5c40fa68f65808b220377a9593f5e7c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

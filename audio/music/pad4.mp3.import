@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pad4.mp3-7e490a72282494486f93a49365d8cbc3.mp3str"
+
+[deps]
+
+source_file="res://audio/music/pad4.mp3"
+dest_files=[ "res://.import/pad4.mp3-7e490a72282494486f93a49365d8cbc3.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

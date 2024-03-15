@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bonk3.mp3-6ffad5f73d6123dc37b0fc5806bb4c8b.mp3str"
+
+[deps]
+
+source_file="res://audio/bonk3.mp3"
+dest_files=[ "res://.import/bonk3.mp3-6ffad5f73d6123dc37b0fc5806bb4c8b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
