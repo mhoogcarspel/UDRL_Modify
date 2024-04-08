@@ -108,7 +108,6 @@
 [node name="Root" type="Node2D"]
 
 [node name="Bkg" type="Sprite" parent="."]
-visible = false
 position = Vector2( 400, 320 )
 z_index = 999
 z_as_relative = false
@@ -154,18 +153,18 @@ z_as_relative = false
 texture = ExtResource( 4 )
 
 [node name="Up" parent="." instance=ExtResource( 1 )]
-position = Vector2( 320, 45 )
+position = Vector2( 720, 80 )
 rotation = 3.14159
 
 [node name="Down" parent="." instance=ExtResource( 1 )]
-position = Vector2( 320, 595 )
+position = Vector2( 720, 240 )
 
 [node name="Left" parent="." instance=ExtResource( 1 )]
-position = Vector2( 45, 320 )
+position = Vector2( 720, 400 )
 rotation = 1.5708
 
 [node name="Right" parent="." instance=ExtResource( 1 )]
-position = Vector2( 595, 320 )
+position = Vector2( 720, 560 )
 rotation = -1.5708
 
 [node name="Audio" type="Node" parent="."]

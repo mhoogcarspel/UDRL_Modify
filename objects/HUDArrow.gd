@@ -1,6 +1,6 @@
 extends Node2D
 
-var scaleNormal = 0.9;
+const scaleNormal = 0.9;
 const scaleBumped = 1.5;
 const scaleRate = 0.15;
 
@@ -18,11 +18,6 @@ func SetState(state):
 	if state != currentState:
 		currentState = state;
 		Bump();
-	
-	if currentState != BoardObject.TYPE.NONE:
-		scaleNormal = 1.3;
-	else:
-		scaleNormal = 0.9;
 
 func _process(_delta):
 	var scaleDiff = $Token.scale.x - scaleNormal;
